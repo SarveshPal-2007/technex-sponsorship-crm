@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="TechNex Sponsorship CRM — Track and manage tech-fest sponsorship leads in one place." />
+  <title>TechNex Sponsorship CRM</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+
+<div class="app">
+  <!-- ========== Sidebar ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar__brand">
+      <div class="sidebar__logo">T</div>
+      <div>
+        <div class="sidebar__title">TechNex CRM</div>
+        <div class="sidebar__subtitle">Sponsorship Tracker</div>
+      </div>
+    </div>
+
+    <form class="form" id="sponsorForm" autocomplete="off">
+      <div class="form__group">
+        <label class="form__label" for="companyName">Company Name</label>
+        <input class="form__input" type="text" id="companyName" placeholder="e.g. Acme Corp" required />
+      </div>
+
+      <div class="form__group">
+        <label class="form__label" for="pocName">Point of Contact</label>
+        <input class="form__input" type="text" id="pocName" placeholder="e.g. Jane Doe" required />
+      </div>
+
+      <div class="form__group">
+        <label class="form__label" for="expectedAmount">Expected Amount (₹)</label>
+        <input class="form__input" type="number" id="expectedAmount" placeholder="e.g. 50000" min="0" required />
+      </div>
+
+      <div class="form__group">
+        <label class="form__label" for="status">Status</label>
+        <select class="form__select" id="status">
+          <option value="Not Contacted">Not Contacted</option>
+          <option value="Emailed">Emailed</option>
+          <option value="Meeting Scheduled">Meeting Scheduled</option>
+          <option value="Secured">Secured</option>
+          <option value="Declined">Declined</option>
+        </select>
+      </div>
+
+      <div class="form__group">
+        <label class="form__label" for="notes">Notes</label>
+        <textarea class="form__textarea" id="notes" placeholder="Pitch details, follow-up dates…"></textarea>
+      </div>
+
+      <button class="form__btn" type="submit" id="submitBtn">+ Add Sponsor</button>
+      <button class="form__btn form__btn--cancel" type="button" id="cancelEditBtn" style="display:none;">Cancel Edit</button>
+    </form>
+  </aside>
+
+  <!-- ========== Main View ========== -->
+  <main class="main">
+    <!-- Analytics -->
+    <section class="analytics" id="analytics">
+      <div class="card">
+        <div class="card__label">Total Approached</div>
+        <div class="card__value" id="statTotal">0</div>
+      </div>
+      <div class="card card--secured">
+        <div class="card__label">Secured</div>
+        <div class="card__value" id="statSecured">0</div>
+      </div>
+      <div class="card card--raised">
+        <div class="card__label">₹ Raised</div>
+        <div class="card__value" id="statRaised">₹0</div>
+      </div>
+    </section>
+
+    <!-- Toolbar -->
+    <section class="toolbar" id="toolbar">
+      <span class="toolbar__label">Filter:</span>
+      <button class="toolbar__btn toolbar__btn--active" data-filter="All">All</button>
+      <button class="toolbar__btn" data-filter="Not Contacted">Not Contacted</button>
+      <button class="toolbar__btn" data-filter="Emailed">Emailed</button>
+      <button class="toolbar__btn" data-filter="Meeting Scheduled">Meeting</button>
+      <button class="toolbar__btn" data-filter="Secured">Secured</button>
+      <button class="toolbar__btn" data-filter="Declined">Declined</button>
+
+      <div class="toolbar__sort">
+        <span class="toolbar__label">Sort:</span>
+        <select class="toolbar__sort-select" id="sortSelect">
+          <option value="newest">Newest First</option>
+          <option value="oldest">Oldest First</option>
+          <option value="amount-desc">Amount ↓</option>
+          <option value="amount-asc">Amount ↑</option>
+          <option value="name-asc">Name A–Z</option>
+          <option value="name-desc">Name Z–A</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Data Table -->
+    <div class="table-wrap">
+      <table class="table" id="sponsorTable">
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>POC</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <!-- Dynamic rows injected here -->
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
